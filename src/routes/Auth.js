@@ -1,4 +1,4 @@
-import { firebaseInstance } from "fbase";
+import { firebaseInstance, authService } from "fbase";
 import React, { useState } from "react";
 
 const Auth = () => {
@@ -25,14 +25,13 @@ const Auth = () => {
       if (newAccount) {
         //create user
         //createUserWithEmailAndPassword
-        data = await firebaseInstance
-          .auth()
-          .createUserWithEmailAndPassword(email, password);
+        data = await authService.createUserWithEmailAndPassword(
+          email,
+          password
+        );
       } else {
         //login
-        data = await firebaseInstance
-          .auth()
-          .signInWithEmailAndPassword(email, password);
+        data = await authService.signInWithEmailAndPassword(email, password);
       }
       console.log("login data:", data);
     } catch (error) {
@@ -53,8 +52,8 @@ const Auth = () => {
       provider = new firebaseInstance.auth.GithubAuthProvider();
     }
     try {
-      const result = await firebaseInstance.auth().signInWithPopup(provider);
-      console.log(result);
+      const result = await authService.signInWithPopup(provider);
+      console.log(result.user.name);
     } catch (error) {
       console.log(error.message);
     }
