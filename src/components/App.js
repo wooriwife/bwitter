@@ -24,7 +24,7 @@ function App() {
       ) : (
         "Initailizing..."
       )}
-      <footer>&copy;{new Date().getFullYear()} Bwitter</footer>
+      {/* <footer>&copy;{new Date().getFullYear()} Bwitter</footer> */}
     </>
   );
 }
