@@ -7,7 +7,6 @@ const Bweet = ({ bweetObj, isOwner }) => {
 
   const onDeleteClick = async () => {
     const ok = window.confirm("Are you sure you want to delete this bweet?");
-    console.log(ok);
     if (ok) {
       await dbService.doc(`bweets/${bweetObj.id}`).delete();
       await storageService.refFromURL(bweetObj.attachmentUrl).delete();
